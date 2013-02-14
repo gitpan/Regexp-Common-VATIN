@@ -5,7 +5,7 @@ use warnings FATAL => "all";
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.1'; # VERSION
+our $VERSION = 'v0.0.2'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
 my $a  = "[[:alpha:]]";
@@ -73,6 +73,7 @@ pattern(
 Regexp::Common::VATIN - Patterns for matching EU VAT Identification Numbers
 
 =head1 SYNOPSIS
+
     use Regexp::Common qw(VATIN);
     "DE123456789" =~ $RE{VATIN}{DE};  # true
     "DE123456789" =~ $RE{VATIN}{any}; # true
