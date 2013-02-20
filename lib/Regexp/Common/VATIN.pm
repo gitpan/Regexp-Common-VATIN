@@ -5,13 +5,13 @@ use warnings FATAL => "all";
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.3'; # VERSION
+our $VERSION = 'v0.0.4'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
-my $a  = "[[:alpha:]]";
-my $an = "[[:alnum:]]";
-my $d  = "[[:digit:]]";
-my $s  = "[[:space:]]?";
+my $a  = "[a-zA-Z]";
+my $an = "[0-9a-zA-Z]";
+my $d  = "[0-9]";
+my $s  = "[ ]?";
 
 # repeats:
 my ($r2, $r3, $r4, $r5, $r8, $r9, $r10, $r11, $r12) = map {
@@ -37,7 +37,7 @@ my %patterns = (
         "(?:$multi_block|$single_block)";
     },
     HU => "$d$r8",                    # Hungary
-    IE => "${d}[[:alnum:]+*]$d$r5$a", # Ireland
+    IE => "${d}[0-9a-zA-Z+*]$d$r5$a", # Ireland
     HU => "$d$r11",                   # Italy
     LT => "(?:$d$r9|$d$r12)",         # Lithuania
     LU => "$d$r8",                    # Luxembourg
