@@ -5,7 +5,7 @@ use warnings FATAL => "all";
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.2'; # VERSION
+our $VERSION = 'v0.0.3'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
 my $a  = "[[:alpha:]]";
@@ -54,14 +54,14 @@ my %patterns = (
 foreach my $alpha2 ( keys %patterns ) {
     pattern(
         name   => ["VATIN", $alpha2],
-        create => qr(\b$alpha2$patterns{$alpha2}\b)
+        create => "\\b$alpha2$patterns{$alpha2}\\b"
     );
 };
 pattern(
     name   => [qw(VATIN any)],
     create => do {
         my $any = join("|", map { "$_$patterns{$_}" } keys %patterns);
-        qr(\b(?:$any)\b);
+        "\\b(?:$any)\\b";
     }
 );
 
@@ -81,8 +81,8 @@ Regexp::Common::VATIN - Patterns for matching EU VAT Identification Numbers
 
 =head1 DESCRIPTION
 
-This module provides regular expression patterns to match any or all of the 26
-nations levying a European Union value added tax.
+This module provides regular expression patterns to match any of the sanctioned
+VATIN formats from the 26 nations levying a European Union value added tax.
 
 =head1 SEE ALSO
 
@@ -91,6 +91,10 @@ nations levying a European Union value added tax.
 =item L<Regexp::Common>
 
 For documentation of the interface this set of regular expressions uses.
+
+=item L<Business::Tax::VAT::Validation>
+
+Checks the official EU database for registered VATINs.
 
 =back
 

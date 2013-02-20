@@ -10,6 +10,7 @@ perlcritic.rc
 t/00-compile.t
 t/01-basic.t
 t/author-critic.t
+t/author-pod-spell.t
 t/author-test-eol.t
 t/release-cpan-changes.t
 t/release-dist-manifest.t

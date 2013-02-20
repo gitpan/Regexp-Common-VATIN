@@ -1,7 +1,10 @@
 Revision history for Regexp-Common-VATIN
 
+v0.0.3    2013-02-20 03:15:55 America/Chicago
+    - Removed qr() quoting of patterns on creation.
+
 v0.0.2    2013-02-14 17:05:41 America/Chicago
-    Fixed POD.
+    - Fixed POD.
 
 v0.0.1    2013-02-14 15:32:33 America/Chicago
-    First version, released on an unsuspecting world.
+    - First version, released on an unsuspecting world.
