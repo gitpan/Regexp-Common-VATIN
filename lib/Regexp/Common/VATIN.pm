@@ -5,7 +5,7 @@ use warnings FATAL => "all";
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.4'; # VERSION
+our $VERSION = 'v0.0.5'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
 my $a  = "[a-zA-Z]";
@@ -54,14 +54,14 @@ my %patterns = (
 foreach my $alpha2 ( keys %patterns ) {
     pattern(
         name   => ["VATIN", $alpha2],
-        create => "\\b$alpha2$patterns{$alpha2}\\b"
+        create => "$alpha2$patterns{$alpha2}"
     );
 };
 pattern(
     name   => [qw(VATIN any)],
     create => do {
         my $any = join("|", map { "$_$patterns{$_}" } keys %patterns);
-        "\\b(?:$any)\\b";
+        "(?:$any)";
     }
 );
 
@@ -74,15 +74,42 @@ Regexp::Common::VATIN - Patterns for matching EU VAT Identification Numbers
 
 =head1 SYNOPSIS
 
+    use feature qw(say);
     use Regexp::Common qw(VATIN);
-    "DE123456789" =~ $RE{VATIN}{DE};  # true
-    "DE123456789" =~ $RE{VATIN}{any}; # true
-    "LT123ABC"    =~ $RE{VATIN}{LT};  # false
+    say "DE123456789" =~ $RE{VATIN}{DE};  # 1
+    say "DE123456789" =~ $RE{VATIN}{any}; # 1
+    say "LT123ABC"    =~ $RE{VATIN}{LT};  # ""
 
 =head1 DESCRIPTION
 
 This module provides regular expression patterns to match any of the sanctioned
 VATIN formats from the 26 nations levying a European Union value added tax.
+
+=head1 JAVASCRIPT
+
+All patterns in this module are written to be compatible with JavaScript's
+somewhat less-expressive regular expression standard. They can thus easily be
+exported for use in a browser-facing web application:
+
+    use JSON qw(encode_json);
+    my $patterns = encode_json($RE{VATIN});
+
+=head1 CAVEAT
+
+In keeping with the standard set by the core L<Regexp::Common> modules, patterns
+are neither anchored nor enclosed with word boundaries. Consider a malformed
+VATIN, e.g.,
+
+    my $vatin = "GB1234567890";
+
+According to the sanctioned patterns from the United Kingdom, the above VATIN is
+malformed (one digit too many). And yet,
+
+    say $vatin =~ $RE{VATIN}{GB};     # 1
+
+To test for an exact match, use start and end anchors:
+
+    say $vatin =~ /^$RE{VATIN}{GB}$/; # ""
 
 =head1 SEE ALSO
 

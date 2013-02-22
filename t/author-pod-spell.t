@@ -18,6 +18,8 @@ add_stopwords(<DATA>);
 all_pod_files_spelling_ok( qw( bin lib  ) );
 __DATA__
 VATINs
+JavaScript's
+JAVASCRIPT
 Richard
 Simões
 rsimoes

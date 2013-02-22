@@ -1,5 +1,9 @@
 Revision history for Regexp-Common-VATIN
 
+v0.0.5    2013-02-22 13:16:01 America/Chicago
+    - Removed word boundaries from patterns.
+    - Updated POD with warning.
+
 v0.0.4    2013-02-20 10:56:45 America/Chicago
     - For the sake of JavaScript compatibility, replaced POSIX character classes
       in regular expressions with character ranges
