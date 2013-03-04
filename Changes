@@ -1,5 +1,8 @@
 Revision history for Regexp-Common-VATIN
 
+v0.0.8    2013-03-04 13:06:43 America/Chicago
+    - Added pattern of Isle of Man.
+
 v0.0.7    2013-03-04 12:50:20 America/Chicago
     - Fixed patterns for Spain and the Netherlands.
 
