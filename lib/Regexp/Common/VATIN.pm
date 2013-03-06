@@ -5,7 +5,7 @@ use warnings FATAL => "all";
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.8'; # VERSION
+our $VERSION = 'v0.0.9'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
 my $a  = "[a-zA-Z]";
@@ -51,6 +51,7 @@ my %patterns = (
     PT => "$d$r9",                    # Portugal
     RO => "${d}{2,10}",               # Romania
     SE => "$d$r12",                   # Sweden
+    SI => "$d$r8",                    # Slovenia
     SK => "$d$r10"                    # Slovakia
 );
 
