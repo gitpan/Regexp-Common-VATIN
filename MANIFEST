@@ -3,7 +3,6 @@ Build.PL
 Changes
 LICENSE
 MANIFEST
-META.json
 META.yml
 README
 lib/Regexp/Common/VATIN.pm
@@ -17,7 +16,6 @@ t/release-cpan-changes.t
 t/release-dist-manifest.t
 t/release-distmeta.t
 t/release-kwalitee.t
-t/release-meta-json.t
 t/release-minimum-version.t
 t/release-mojibake.t
 t/release-no-tabs.t

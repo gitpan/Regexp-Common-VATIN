@@ -5,7 +5,7 @@ use warnings FATAL => "all";
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.10'; # VERSION
+our $VERSION = 'v0.0.11'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
 my $uk_pattern = do {
@@ -31,7 +31,11 @@ my %patterns = (
     GB => $uk_pattern,                          # United Kingdom
     HR => '[0-9]{11}',                          # Croatia
     HU => '[0-9]{8}',                           # Hungary
-    IE => '[0-9][0-9a-zA-Z+*][0-9]{5}[a-zA-Z]', # Ireland
+    IE => do {                                  # Ireland
+        my $wi_form = '[0-9]{7}WI';
+        my $all_others = '[0-9][0-9a-zA-Z+*][0-9]{5}[a-zA-Z]';
+        "(?:$wi_form|$all_others)";
+    },
     IM => $uk_pattern,                          # Isle of Man
     IT => '[0-9]{11}',                          # Italy
     LT => '(?:[0-9]{9}|[0-9]{12})',             # Lithuania
@@ -89,7 +93,9 @@ Regexp::Common::VATIN - Patterns for matching EU VAT Identification Numbers
 =head1 DESCRIPTION
 
 This module provides regular expression patterns to match any of the sanctioned
-VATIN formats from the 26 nations levying a European Union value added tax.
+VATIN formats from the 27 nations levying a European Union value added tax. The
+data found at http://ec.europa.eu/taxation_customs/vies/faq.html#item_11 is
+used as the authoritative source of all patterns.
 
 =head1 JAVASCRIPT
 

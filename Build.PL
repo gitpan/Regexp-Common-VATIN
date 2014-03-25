@@ -18,7 +18,7 @@ my %module_build_args = (
     "Richard Sim\x{f5}es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "Regexp-Common-VATIN",
-  "dist_version" => "v0.0.10",
+  "dist_version" => "v0.0.11",
   "license" => "mit",
   "module_name" => "Regexp::Common::VATIN",
   "recommends" => {},
