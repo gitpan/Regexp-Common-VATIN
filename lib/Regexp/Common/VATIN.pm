@@ -1,11 +1,11 @@
 package Regexp::Common::VATIN;
 
 use strict;
-use warnings FATAL => "all";
+use warnings FATAL => 'all';
 use utf8;
 use Regexp::Common qw(pattern clean no_defaults);
 
-our $VERSION = 'v0.0.11'; # VERSION
+our $VERSION = 'v0.0.12'; # VERSION
 # ABSTRACT: Patterns for matching EU VAT Identification Numbers
 
 my $uk_pattern = do {
@@ -32,9 +32,9 @@ my %patterns = (
     HR => '[0-9]{11}',                          # Croatia
     HU => '[0-9]{8}',                           # Hungary
     IE => do {                                  # Ireland
-        my $wi_form = '[0-9]{7}WI';
-        my $all_others = '[0-9][0-9a-zA-Z+*][0-9]{5}[a-zA-Z]';
-        "(?:$wi_form|$all_others)";
+        my $new_format = '[0-9]{7}[a-zA-Z]{1,2}';
+        my $old_format = '[0-9][0-9a-zA-Z+*][0-9]{5}[a-zA-Z]';
+        "(?:$new_format|$old_format)";
     },
     IM => $uk_pattern,                          # Isle of Man
     IT => '[0-9]{11}',                          # Italy
